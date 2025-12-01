@@ -7,7 +7,7 @@ import { api } from '../services/api';
 
 interface AuthScreenProps {
   initialMode: 'login' | 'signup';
-  onAuthSuccess: (user: any) => void; // Pass full user object
+  onAuthSuccess: (user: any) => void; 
   onNavigateToLogin: () => void;
 }
 
@@ -16,7 +16,6 @@ const AuthScreen: React.FC<AuthScreenProps> = ({ initialMode, onAuthSuccess, onN
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Form State
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

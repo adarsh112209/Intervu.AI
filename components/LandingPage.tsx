@@ -73,12 +73,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLogin, onSignup, isAuthenti
             {[
               { 
                 title: "AI-Powered Interviews", 
-                desc: "Realistic voice interactions with adaptive AI.",
+                desc: "Realistic interactions with adaptive AI.",
                 icon: Mic,
                 color: "from-blue-500 to-indigo-500"
               },
               { 
-                title: "Real-time Voice Analysis", 
+                title: "Real-time Analysis", 
                 desc: "Instant feedback on tone, pace, and clarity.",
                 icon: Activity,
                 color: "from-indigo-500 to-purple-500"

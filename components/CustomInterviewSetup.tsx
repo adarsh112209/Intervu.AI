@@ -13,7 +13,6 @@ const CustomInterviewSetup: React.FC<CustomInterviewSetupProps> = ({ onStart }) 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (company && role) {
-      // Append the interview type to the role to guide the AI and Report Service
       const effectiveRole = `${role} (${interviewType} Interview)`;
       onStart(company, effectiveRole);
     }

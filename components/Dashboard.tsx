@@ -17,7 +17,7 @@ const StatCard: React.FC<{ title: string; score: number | string; icon: any; col
     const isNum = typeof score === 'number';
     
     // SVG Config to prevent clipping
-    const radius = 38; // Reduced radius
+    const radius = 38; 
     const stroke = 8;
     const normalizedRadius = radius - stroke / 2;
     const circumference = normalizedRadius * 2 * Math.PI;
@@ -159,15 +159,12 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate, userProfile, reports 
       const height = VIEWBOX_HEIGHT - (PADDING_Y * 2);
 
       return graphData.map((d, i) => {
-          // X: Distribute points evenly
           const x = PADDING_X + (graphData.length > 1 ? (i / (graphData.length - 1)) * width : width / 2);
-          // Y: Scale 0-100 score to height (0 at bottom)
           const y = (VIEWBOX_HEIGHT - PADDING_Y) - (d.avgScore / 100) * height;
           return { x, y, data: d };
       });
   }, [graphData]);
 
-  // Path Strings
   const linePath = useMemo(() => {
       if (points.length < 2) return "";
       return "M" + points.map(p => `${p.x},${p.y}`).join(" L");
@@ -180,7 +177,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate, userProfile, reports 
       return `${linePath} L${last.x},${VIEWBOX_HEIGHT - PADDING_Y} L${first.x},${VIEWBOX_HEIGHT - PADDING_Y} Z`;
   }, [linePath, points]);
 
-  // Trend Calc
   const trend = useMemo(() => {
       if (graphData.length < 2) return null;
       const last = graphData[graphData.length - 1].avgScore;
