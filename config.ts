@@ -1,1 +1,4 @@
-export const API_KEY = 'AIzaSyDKV_ZjfhfwuqRXeo_dFzLZUOFwO3X5YYE';
+import dotenv from "dotenv";
+dotenv.config();
+
+export const API_KEY = process.env.API_KEY as string;
