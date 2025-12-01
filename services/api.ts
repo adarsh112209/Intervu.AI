@@ -1,11 +1,14 @@
+/// <reference types="vite/client" />
 
 import { UserProfile, InterviewReport } from '../types';
 
 // --- CONFIGURATION ---
-// Set this to false to use the real MongoDB backend (server/server.js)
 const USE_MOCK_DB = false; 
 
-const API_URL = 'http://localhost:5000/api';
+// Auto-detect environment:
+// - If building for production (Render), use relative path '/api'
+// - If local dev, use http://localhost:5000/api (via proxy or direct)
+const API_URL = import.meta.env.PROD ? '/api' : 'http://localhost:5000/api';
 
 // --- Types ---
 interface AuthResponse {

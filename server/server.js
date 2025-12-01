@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 const User = require('./models/User');
 const Report = require('./models/Report');
 
@@ -12,9 +13,12 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Serve static files from the React app build directory
+// This allows the Node server to serve the frontend
+app.use(express.static(path.join(__dirname, '../dist')));
+
 // --- MongoDB Connection ---
-// Connecting to 'intervu_db' specifically
-const MONGO_URI = "mongodb+srv://kushulala430_db_user:tGKRtgloUWGzUVjA@cluster0.6dv3f5y.mongodb.net/intervu_db?appName=Cluster0";
+const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://kushulala430_db_user:tGKRtgloUWGzUVjA@cluster0.6dv3f5y.mongodb.net/intervu_db?appName=Cluster0";
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('MongoDB Connected'))
@@ -109,6 +113,12 @@ app.get('/api/reports/:userId', async (req, res) => {
   } catch (err) {
     res.status(500).send('Server Error');
   }
+});
+
+// --- Catch-All Route for SPA ---
+// Any request that doesn't match an API route returns the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
