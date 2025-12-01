@@ -3,13 +3,13 @@
   "name": "intervu-ai",
   "version": "1.0.0",
   "description": "AI Interview Simulator",
-  "main": "index.tsx",
+  "main": "server/server.js",
   "scripts": {
-    "start": "vite",
+    "dev:frontend": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "node server/server.js",
-    "dev": "concurrently \"npm start\" \"npm run server\""
+    "start": "node server/server.js",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run start\""
   },
   "dependencies": {
     "react": "^18.2.0",
